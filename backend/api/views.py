@@ -18,7 +18,9 @@ def chat(request):
         script_dir = os.path.dirname(__file__)
         project_root = os.path.dirname(script_dir)
         # The DB is in the root, so we go up one level from `backend`
-        client = chromadb.PersistentClient(path=os.path.join(project_root, "../chroma_db")) 
+        client = chromadb.PersistentClient(
+            path=os.path.join(project_root, "../chroma_db")
+        ) 
         collection = client.get_collection(name="nepal_constitution")
 
         # 3. Query the database to find the 3 most relevant chunks
