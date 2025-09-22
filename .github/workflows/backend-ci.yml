@@ -1,0 +1,31 @@
+# In .github/workflows/backend-ci.yml
+
+name: Backend CI
+
+on:
+  push:
+    branches: [ "master" ]
+    paths:
+      - 'backend/**'
+  pull_request:
+    branches: [ "master" ]
+    paths:
+      - 'backend/**'
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11' 
+
+    - name: Install dependencies
+      run: pip install -r backend/requirements.txt
+
+    - name: Run flake8 linter
+      run: flake8 backend/
