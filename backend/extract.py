@@ -52,6 +52,7 @@ if __name__ == "__main__":
     if extracted_text:
         chunks = clean_and_chunk_text(extracted_text)
 
+
         # --- FINAL ADDITION ---
         # The first 4 chunks were the table of contents, so we skip them.
         final_chunks = chunks[4:] 
