@@ -14,11 +14,16 @@ ENV PYTHONUNBUFFERED 1
 COPY backend/requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
+
 # 5. Copy the backend application code
 COPY ./backend .
 
+
+RUN python manage.py collectstatic --noinput
+
 # 6. Expose the port the app will run on
 EXPOSE 8000
+
 
 # 7. The command to run the application
 CMD ["gunicorn", "--bind", "0.0.0.0:8000", "core.wsgi"]
