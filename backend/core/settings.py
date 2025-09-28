@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-jd=sb+f5s$@ynikpum*yy+c9q7mjkw$nsg+cwj#%g8w(z^si!m'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["mallarb369-nepal-rag-backend.hf.space"]
 
