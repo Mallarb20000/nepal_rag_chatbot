@@ -12,7 +12,16 @@ import os
 @csrf_exempt
 @api_view(['POST'])
 def chat(request):
-    question = request.data.get('question')
+    # Handle both JSON and form data
+    if hasattr(request, 'data') and request.data:
+        question = request.data.get('question')
+    else:
+        import json
+        try:
+            data = json.loads(request.body)
+            question = data.get('question')
+        except (json.JSONDecodeError, AttributeError):
+            question = request.POST.get('question')
 
     if not question:
         return Response({"error": "No question was provided."}, status=400)

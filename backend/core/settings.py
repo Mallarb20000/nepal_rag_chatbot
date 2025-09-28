@@ -25,7 +25,16 @@ SECRET_KEY = 'django-insecure-jd=sb+f5s$@ynikpum*yy+c9q7mjkw$nsg+cwj#%g8w(z^si!m
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["mallarb369-nepal-rag-backend.hf.space"]
+ALLOWED_HOSTS = [
+    "mallarb369-nepal-rag-backend.hf.space",
+    "mallarb369-nepal-rag-backend.hf.space:7860",
+    ".hf.space",
+    "*"
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://mallarb369-nepal-rag-backend.hf.space"
+]
 
 
 # Application definition
