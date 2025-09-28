@@ -85,4 +85,11 @@ def chat(request):
         })
 
     except Exception as e:
-        return Response({"error": f"An error occurred: {str(e)}"}, status=500)
+        import traceback
+        error_details = traceback.format_exc()
+        print(f"ERROR: {str(e)}")
+        print(f"TRACEBACK: {error_details}")
+        return Response({
+            "error": f"An error occurred: {str(e)}",
+            "traceback": error_details
+        }, status=500)
