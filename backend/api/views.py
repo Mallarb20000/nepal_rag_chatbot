@@ -1,5 +1,7 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from django.views.decorators.csrf import csrf_exempt
+from django.utils.decorators import method_decorator
 import chromadb
 import ollama
 import os
@@ -7,6 +9,7 @@ import os
 # We can remove the hello_world view now as it was just for testing
 # def hello_world(request): ...
 
+@csrf_exempt
 @api_view(['POST'])
 def chat(request):
     question = request.data.get('question')

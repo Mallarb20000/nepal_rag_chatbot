@@ -130,7 +130,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
-    "https://nepal-rag-chatbot.vercel.app/",
+    "https://nepal-rag-chatbot.vercel.app",
+    "https://mallarb369-nepal-rag-backend.hf.space",
 ]
 
 STATIC_ROOT = BASE_DIR / "staticfiles"
