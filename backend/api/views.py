@@ -72,7 +72,7 @@ def chat(request):
         """
 
         # Correctly connect to the Ollama client inside Docker
-        ollama_client = ollama.Client(host='http://host.docker.internal:11434')
+        ollama_client = ollama.Client(host='https://mallarb369-my-ollama-server.hf.space')
         response = ollama_client.chat(
             model='llama3:8b',
             messages=[{'role': 'user', 'content': prompt_template}]
