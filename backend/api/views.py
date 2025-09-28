@@ -12,19 +12,41 @@ import os
 @csrf_exempt
 @api_view(['POST'])
 def chat(request):
+    # Debug logging
+    print(f"Content-Type: {request.content_type}")
+    print(f"Request method: {request.method}")
+    print(f"Request body: {request.body}")
+    print(f"Request data: {getattr(request, 'data', 'No data attribute')}")
+
     # Handle both JSON and form data
+    question = None
     if hasattr(request, 'data') and request.data:
         question = request.data.get('question')
+        print(f"Got question from request.data: {question}")
     else:
         import json
         try:
             data = json.loads(request.body)
             question = data.get('question')
-        except (json.JSONDecodeError, AttributeError):
+            print(f"Got question from JSON body: {question}")
+        except (json.JSONDecodeError, AttributeError) as e:
+            print(f"JSON decode error: {e}")
             question = request.POST.get('question')
+            print(f"Got question from POST: {question}")
 
     if not question:
-        return Response({"error": "No question was provided."}, status=400)
+        error_msg = {
+            "error": "No question was provided.",
+            "debug": {
+                "content_type": request.content_type,
+                "has_data": hasattr(request, 'data'),
+                "data": str(getattr(request, 'data', 'None')),
+                "body": str(request.body),
+                "post": dict(request.POST)
+            }
+        }
+        print(f"Returning 400 error: {error_msg}")
+        return Response(error_msg, status=400)
 
     try:
         # --- RETRIEVAL PHASE ---
